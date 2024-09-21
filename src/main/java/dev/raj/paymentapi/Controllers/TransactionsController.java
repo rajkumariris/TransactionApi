@@ -29,7 +29,8 @@ public class TransactionsController {
     RateLimitService rateLimitService;
 
 
-    @PreAuthorize("hasAnyRole('ADMIN') and hasAnyAuthority('write','read')")
+//ADMIN ,USER READ-ONLY ,WRITE
+    @PreAuthorize("hasAnyRole('ADMIN') and hasAnyAuthority('WRITE','READ-ONLY')")
     @PostMapping("/transactions")
     public ResponseEntity<Currency> getTransactions(@RequestBody CurrencyDto currencyDto) throws JsonProcessingException {
         if(rateLimitService.tryConsumeTransaction()) {

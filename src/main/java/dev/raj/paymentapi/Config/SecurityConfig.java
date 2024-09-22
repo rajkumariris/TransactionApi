@@ -55,40 +55,4 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
            http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
-
-
-
-//    @Bean
-//    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-//        http.authorizeRequests(authorizeRequests ->
-//                        authorizeRequests
-//                                .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**").permitAll()
-//                                .requestMatchers("/signup").permitAll()
-//                                .anyRequest().authenticated()
-//                )
-//                .csrf(csrf -> csrf.disable()) // disable CSRF protection for /signup
-//                .sessionManagement(sessionManagement ->
-//                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                )
-//                .httpBasic(withDefaults());
-//        return http.build();
-//    }
-   // @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user1 = User.withUsername("user")
-//            .password("{noop}password")
-//            .roles("USER")
-//                .authorities("read")
-//                .build();
-//
-//
-//        UserDetails admin= User.withUsername("admin")
-//                .password("{noop}password")
-//                .authorities("ROLE_ADMIN", "read", "write")
-//                .build();
-//
-//
-//
-//        return new InMemoryUserDetailsManager(user1,admin);
-//    }
 }

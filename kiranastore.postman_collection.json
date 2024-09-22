@@ -1,0 +1,748 @@
+{
+	"info": {
+		"_postman_id": "b12e36fd-8377-45cb-a93e-b7088c77601b",
+		"name": "kiranastore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13431914"
+	},
+	"item": [
+		{
+			"name": "transactionapi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "- 1.Added redis optimised from 500ms to 2ms\n    \n- admin rights if user is not admin and dont have to access the transaction then show unauthorized\n    \n- Has transaction credited\n    \n- Catched the api\n    \n- Rate limited from bombading the server\n    \n- Response also mentioned in transaction dropdown"
+			},
+			"response": [
+				{
+					"name": "transactionapi",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\":\"20000034\",\r\n    \"currency\":\"INR\",\r\n    \"transactionType\":\"credit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 22 Sep 2024 07:40:55 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"66efca0773618e5d4d46405d\",\n    \"amount\": \"239597.71460517627\",\n    \"currency\": \"USD\",\n    \"transactionType\": \"credit\",\n    \"transactionDate\": [\n        2024,\n        9,\n        22\n    ]\n}"
+				},
+				{
+					"name": "adminwithrights",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\":\"20000034\",\r\n    \"currency\":\"INR\",\r\n    \"transactionType\":\"credit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "WWW-Authenticate",
+							"value": "Basic realm=\"Realm\""
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "Basic realm=\"Realm\""
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 22 Sep 2024 07:48:19 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "redisused2ms",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\":\"20000034\",\r\n    \"currency\":\"INR\",\r\n    \"transactionType\":\"credit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 22 Sep 2024 07:54:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"66efcd49fcd24271979a17cc\",\n    \"amount\": \"239597.70853352852\",\n    \"currency\": \"USD\",\n    \"transactionType\": \"credit\",\n    \"transactionDate\": [\n        2024,\n        9,\n        22\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"omega\",\r\n    \"password\":\"password\",\r\n    \"roles\":[\"ROLE_USER\",\"ROLE_ADMIN\"],\r\n    \"authorities\":[\"READ-ONLY\",\"WRITE\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=ISO-8859-1"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 22 Sep 2024 07:44:57 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "user"
+				}
+			]
+		},
+		{
+			"name": "wholeamount",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "wholeamount",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\":\"2024-09-18\",\r\n    \"to\":\"2024-09-22\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/reports",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"reports"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 22 Sep 2024 07:41:56 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "958390.8549605012"
+				}
+			]
+		},
+		{
+			"name": "weeklyreports",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "omega",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/WeeklyReports",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"WeeklyReports"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "weeklyreports",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/WeeklyReports",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"WeeklyReports"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 22 Sep 2024 07:19:37 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"reports\": [\n        {\n            \"id\": \"66efb9f842d652056617acf9\",\n            \"amount\": \"239597.72522144718\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        },\n        {\n            \"id\": \"66efbc0c42d652056617acfa\",\n            \"amount\": \"239597.70182810823\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        },\n        {\n            \"id\": \"66efc4e68d2108195b2d2a68\",\n            \"amount\": \"239597.71330576955\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        }\n    ],\n    \"totalCredited\": 718793.140355325,\n    \"totalDebited\": 0,\n    \"netFlow\": 0\n}"
+				},
+				{
+					"name": "ratelimit429 error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/WeeklyReports",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"WeeklyReports"
+							]
+						}
+					},
+					"status": "Too Many Requests",
+					"code": 429,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 22 Sep 2024 07:46:26 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Montlyreports",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "- Rate limited the from bombading the server"
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/MontlyReports",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"MontlyReports"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 22 Sep 2024 07:42:42 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"reports\": [\n        {\n            \"id\": \"66efb9f842d652056617acf9\",\n            \"amount\": \"239597.72522144718\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        },\n        {\n            \"id\": \"66efbc0c42d652056617acfa\",\n            \"amount\": \"239597.70182810823\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        },\n        {\n            \"id\": \"66efc4e68d2108195b2d2a68\",\n            \"amount\": \"239597.71330576955\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        },\n        {\n            \"id\": \"66efca0773618e5d4d46405d\",\n            \"amount\": \"239597.71460517627\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        }\n    ],\n    \"totalCredited\": 958390.8549605012,\n    \"totalDebited\": 0,\n    \"netFlow\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "YearlyReports",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/YearlyReports",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"YearlyReports"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 22 Sep 2024 07:42:52 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"reports\": [\n        {\n            \"id\": \"66efb9f842d652056617acf9\",\n            \"amount\": \"239597.72522144718\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        },\n        {\n            \"id\": \"66efbc0c42d652056617acfa\",\n            \"amount\": \"239597.70182810823\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        },\n        {\n            \"id\": \"66efc4e68d2108195b2d2a68\",\n            \"amount\": \"239597.71330576955\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        },\n        {\n            \"id\": \"66efca0773618e5d4d46405d\",\n            \"amount\": \"239597.71460517627\",\n            \"currency\": \"USD\",\n            \"transactionType\": \"credit\",\n            \"transactionDate\": [\n                2024,\n                9,\n                22\n            ]\n        }\n    ],\n    \"totalCredited\": 958390.8549605012,\n    \"totalDebited\": 0,\n    \"netFlow\": 0\n}"
+				}
+			]
+		}
+	]
+}

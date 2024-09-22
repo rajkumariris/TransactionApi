@@ -17,19 +17,40 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+/**
+ * This class is responsible for handling HTTP requests related to transactions.
+ * It includes endpoints for creating, retrieving, updating, and deleting transactions.
+ */
 @RestController
 public class TransactionsController {
 
-
+    /**
+     * The service that handles the business logic related to transactions.
+     */
     @Autowired
     TransactionsService transactionsService;
-
+    /**
+     * The service that handles rate limiting for the API endpoints.
+     */
     @Autowired
     RateLimitService rateLimitService;
 
+    /**
+     * This class is responsible for handling HTTP requests related to transactions.
+     * It includes endpoints for creating, retrieving, updating, and deleting transactions.
+     */
 
-//ADMIN ,USER READ-ONLY ,WRITE
+
+    /**
+     * This method handles the request to create a new transaction.
+     * It checks if the rate limit for transactions is not exceeded.
+     * If the rate limit is not exceeded, it calls the TransactionsService to create a new transaction.
+     * If the rate limit is exceeded, it returns a HTTP status code 429 (Too Many Requests).
+     * This endpoint can only be accessed by users with the role 'ADMIN' and the authority 'WRITE' or 'READ-ONLY'.
+     * @param currencyDto the data transfer object containing the details of the transaction to be created
+     * @return ResponseEntity with the created transaction and HTTP status code
+     * @throws JsonProcessingException if an error occurs during the processing of the JSON data
+     */
     @PreAuthorize("hasAnyRole('ADMIN') and hasAnyAuthority('WRITE','READ-ONLY')")
     @PostMapping("/transactions")
     public ResponseEntity<Currency> getTransactions(@RequestBody CurrencyDto currencyDto) throws JsonProcessingException {
@@ -42,15 +63,12 @@ public class TransactionsController {
         }
     }
 
-
-    @PreAuthorize("hasAnyRole('ADMIN') and hasAnyAuthority('write')")
-    @PostMapping("/hello")
-    public String getResponse(){
-        return "hello";
-    }
-
-
-
+    /**
+     * This method handles the request to get transaction reports.
+     * This endpoint can be accessed by users with the role 'ADMIN' or 'USER'.
+     * @param reportsDto the data transfer object containing the details for generating the reports
+     * @return the transaction reports
+     */
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @PostMapping("/reports")
     public double getTransactionReports(@RequestBody ReportsDto reportsDto){
@@ -58,6 +76,15 @@ public class TransactionsController {
     }
 
 
+
+    /**
+     * This method handles the request to get monthly reports.
+     * It checks if the rate limit for reports is not exceeded.
+     * If the rate limit is not exceeded, it calls the TransactionsService to get the monthly reports.
+     * If the rate limit is exceeded, it returns a HTTP status code 429 (Too Many Requests).
+     * This endpoint can be accessed by users with the role 'ADMIN' or 'USER' and the authority 'read'.
+     * @return ResponseEntity with the monthly reports and HTTP status code
+     */
 
     @PreAuthorize("hasAnyRole('ADMIN','USER') and hasAnyAuthority('read')")
     @GetMapping("/MontlyReports")
@@ -72,6 +99,14 @@ public class TransactionsController {
     }
 
 
+    /**
+     * This method handles the request to get weekly reports.
+     * It checks if the rate limit for reports is not exceeded.
+     * If the rate limit is not exceeded, it calls the TransactionsService to get the weekly reports.
+     * If the rate limit is exceeded, it returns a HTTP status code 429 (Too Many Requests).
+     * This endpoint can be accessed by users with the role 'ADMIN' or 'USER' and the authority 'read'.
+     * @return ResponseEntity with the weekly reports and HTTP status code
+     */
     @PreAuthorize("hasAnyRole('ADMIN','USER') and hasAnyAuthority('read')")
     @GetMapping("/WeeklyReports")
     public ResponseEntity<Reports> getWeeklyReports(){
@@ -84,7 +119,14 @@ public class TransactionsController {
         }
     }
 
-
+    /**
+     * This method handles the request to get yearly reports.
+     * It checks if the rate limit for reports is not exceeded.
+     * If the rate limit is not exceeded, it calls the TransactionsService to get the yearly reports.
+     * If the rate limit is exceeded, it returns a HTTP status code 429 (Too Many Requests).
+     * This endpoint can be accessed by users with the role 'ADMIN' or 'USER' and the authority 'read'.
+     * @return ResponseEntity with the yearly reports and HTTP status code
+     */
     @PreAuthorize("hasAnyRole('ADMIN','USER') and hasAnyAuthority('read')")
     @GetMapping("/YearlyReports")
     public ResponseEntity<Reports> getYearlyReports(){

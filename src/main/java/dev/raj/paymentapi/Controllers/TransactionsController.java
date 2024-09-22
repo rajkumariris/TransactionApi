@@ -86,7 +86,7 @@ public class TransactionsController {
      * @return ResponseEntity with the monthly reports and HTTP status code
      */
 
-    @PreAuthorize("hasAnyRole('ADMIN','USER') and hasAnyAuthority('read')")
+    @PreAuthorize("hasAnyRole('ADMIN') and hasAnyAuthority('WRITE','READ-ONLY')")
     @GetMapping("/MontlyReports")
     public ResponseEntity<Reports> getMonthlyReports(){
         if(rateLimitService.tryConsumeReports()) {
@@ -107,7 +107,7 @@ public class TransactionsController {
      * This endpoint can be accessed by users with the role 'ADMIN' or 'USER' and the authority 'read'.
      * @return ResponseEntity with the weekly reports and HTTP status code
      */
-    @PreAuthorize("hasAnyRole('ADMIN','USER') and hasAnyAuthority('read')")
+    @PreAuthorize("hasAnyRole('ADMIN') and hasAnyAuthority('WRITE','READ-ONLY')")
     @GetMapping("/WeeklyReports")
     public ResponseEntity<Reports> getWeeklyReports(){
         if(rateLimitService.tryConsumeReports()) {
@@ -127,7 +127,7 @@ public class TransactionsController {
      * This endpoint can be accessed by users with the role 'ADMIN' or 'USER' and the authority 'read'.
      * @return ResponseEntity with the yearly reports and HTTP status code
      */
-    @PreAuthorize("hasAnyRole('ADMIN','USER') and hasAnyAuthority('read')")
+    @PreAuthorize("hasAnyRole('ADMIN') and hasAnyAuthority('WRITE','READ-ONLY')")
     @GetMapping("/YearlyReports")
     public ResponseEntity<Reports> getYearlyReports(){
         if(rateLimitService.tryConsumeReports()) {
